@@ -1,0 +1,88 @@
+body {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  }
+
+#playGround {
+    border: 20px solid rgb(17,17,215);
+    width: 380px;
+    height: 280px;
+    margin-top: 10vh;
+    margin-left: 3vh;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 3%;
+    background-color: rgba(150, 247, 251, 1);
+}
+
+#overLay {
+    margin-top: 10vh;
+    margin-left: 3vh;
+    width: 380px;
+    height: 280px;
+    border: 20px solid;
+    background-color: rgb(155, 255, 255);
+    opacity: 0.8;
+    text-align: center;
+    visibility: hidden;
+    border-radius: 3%;
+}
+
+.btn {
+    border-radius: 15%;
+    background-color: rgb(73, 234, 41);
+}
+
+.btn:hover:hover {
+    background-color: rgb(53, 167, 30);
+    cursor: pointer;
+}
+
+#overLayContent{
+    margin-top: 10vh;
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+.container div {
+   grid-row-start: 1;
+   grid-column-start: 1;
+  }
+
+.square {
+    background-color: rgba(150, 247, 251, 1);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;    
+    width: 20px;
+    height: 20px;
+}
+
+.snake {
+    background-color: rgb(67, 67, 67);
+    border-radius: 3px;
+}
+
+.stone {
+    background-color: rgb(0, 0, 0);
+    border-radius: 3px;
+}
+
+#stats {
+    color: white;
+    margin-left: 6vh;
+    margin-top: 2vh;
+    font-size: smaller;
+    width: 380px;
+    display: inline;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+}
+
+#score, #record {
+    margin-right: 60px;
+}
+
