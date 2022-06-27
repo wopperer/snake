@@ -20,58 +20,57 @@ document.addEventListener('keydown', (e)=>{
     }
 })
 
-const easyButton = document.querySelector('#easyButton')
+const easyButton = document.querySelector('#easyButton') as Element;
 easyButton.addEventListener('click', ()=>{
     init('easy');
 })
 
-const middleButton = document.querySelector('#middleButton')
+const middleButton = document.querySelector('#middleButton') as Element
 middleButton.addEventListener('click', ()=>{
     init('middle');
 })
 
-const advancedButton = document.querySelector('#advancedButton')
+const advancedButton = document.querySelector('#advancedButton') as Element;
 advancedButton.addEventListener('click', ()=>{
     init('advanced');
 })
 
-const overLay = document.querySelector('#overLay')
+const overLay = document.querySelector('#overLay') as HTMLDivElement;
 overLay.style.visibility = 'visible'
 overLay.style.borderColor = 'rgb(17,17,215)'
-overLay.querySelector('.overlayHeader').textContent = 'select level'
+overLay.querySelector('.overlayHeader')!.textContent = 'select level'
 
 
 function init(level){
     snake = [28, 47, 66]
     direction = 'down'
-    stone
     started = false
     clearInterval(interval)
-    playGround.innerHTML = ''
-    speed = level === 'easy' ? 200 : level === 'middle' ? 100 : 50
+    playGround!.innerHTML = ''
+    speed = level === 'easy' ? 200 : level === 'middle' ? 100 : 50;
 
-    const overLay = document.querySelector('#overLay')
-    overLay.style.visibility = 'hidden'
+    const overLay = document.querySelector('#overLay') as HTMLDivElement; 
+    overLay.style.visibility = 'hidden';
 
-    const score = document.querySelector('#score')
-    score.textContent = 0
+    const score = document.querySelector('#score');
+    score!.textContent = '0';
 
     for(let i=0; i<266; i++){
-        const square = document.createElement('div')
-        square.className = `square s${i} ${snake.includes(i)?'snake': ''}`
-        playGround.appendChild(square)
+        const square = document.createElement('div');
+        square.className = `square s${i} ${snake.includes(i)?'snake': ''}`;
+        playGround!.appendChild(square);
     }
-    throwStone()
-}
+    throwStone();
+} 
 
 function throwStone(){
-    stone = getRandomInt(0, 265, snake)
-    const stoneSquare = document.querySelector(`.s${stone}`)
-    stoneSquare.classList.add('stone')
+    stone = getRandomInt(0, 265, snake);
+    const stoneSquare = document.querySelector(`.s${stone}`) as HTMLDivElement;
+    stoneSquare.classList.add('stone');
     if(!started){
-        interval = setInterval(() => move(),speed) 
+        interval = setInterval(() => move(),speed); 
     }
-    started = true
+    started = true;
 }
 
 function getRandomInt(min, max, snake) {
@@ -81,7 +80,7 @@ function getRandomInt(min, max, snake) {
     while (snake.includes(result)) {
         result = Math.floor(Math.random() * (max - min)) + min
     }
-    return result
+    return result;
   }
 
 function move(){
@@ -109,9 +108,9 @@ function move(){
     // snake hit snake - game over
     if(newSnakeSquare?.classList.contains('snake')){
         clearInterval(interval)
-        const overLay = document.querySelector('#overLay')
+        const overLay = document.querySelector('#overLay') as HTMLDivElement;
         overLay.style.visibility = 'visible'
-        overLay.querySelector('.overlayHeader').textContent = 'game over!'
+        overLay.querySelector('.overlayHeader')!.textContent = 'game over!'
         overLay.style.borderColor = 'rgb(255, 0, 0)'
         return
     }
@@ -126,13 +125,13 @@ function move(){
 
     // snake eats stone - points
     if(snake[snake.length-1] === stone){
-        const stoneSquare = document.querySelector(`.s${stone}`)
+        const stoneSquare = <HTMLDivElement>document.querySelector(`.s${stone}`);
         stoneSquare.classList.remove('stone')
         snake.unshift(oldSnake[0])
-        const score = document.querySelector('#score')
-        score.textContent = parseInt(score.textContent) + 25
-        const recordElement = document.querySelector('#record')
-        if(parseInt(score.textContent) > parseInt(recordElement.textContent)){
+        const score = <HTMLDivElement>document.querySelector('#score')
+        score.textContent = `${parseInt(score.textContent? score.textContent: '0') + 25}`;
+        const recordElement = <HTMLDivElement>document.querySelector('#record')
+        if(parseInt(score.textContent) > parseInt(recordElement?.textContent? recordElement.textContent: '0')){
             recordElement.textContent = score.textContent
         }
         throwStone()
@@ -141,18 +140,18 @@ function move(){
     //snake hit top or bottom - game over
     if(!newSnakeSquare?.classList.length){
         clearInterval(interval)
-        const overLay = document.querySelector('#overLay')
-        overLay.style.visibility = 'visible'
-        overLay.querySelector('.overlayHeader').textContent = 'game over!'
-        overLay.style.borderColor = 'rgb(255, 0, 0)'
+        const overLay = document.querySelector('#overLay') as HTMLDivElement;
+        overLay.style.visibility = 'visible';
+        overLay.querySelector('.overlayHeader')!.textContent = 'game over!';
+        overLay.style.borderColor = 'rgb(255, 0, 0)';
     }
 
     //snake hit left or right - game over
     if(((snake[snake.length-1] % 19 === 18) && direction === "left") || ((snake[snake.length-1] % 19 === 0) && direction === "right")){
         clearInterval(interval)
-        const overLay = document.querySelector('#overLay')
+        const overLay = document.querySelector('#overLay') as HTMLDivElement;
         overLay.style.visibility = 'visible'
-        overLay.querySelector('.overlayHeader').textContent = 'game over!'
+        overLay.querySelector('.overlayHeader')!.textContent = 'game over!'
         overLay.style.borderColor = 'rgb(255, 0, 0)'
     }
  }

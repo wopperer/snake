@@ -1,4 +1,4 @@
-# a vanilla js snake game
+# a typescript retro snake game
 
 <img src="snake.png" width="350" height="300">
 <img src="game-over.png" width="350" height="300">
