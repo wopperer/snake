@@ -2,6 +2,7 @@
     "compilerOptions": {
       "lib": ["es6", "dom", "es2017"],
       "target": "es5",
-      "outFile": "lib/app.js"
+      "outFile": "lib/app.js",
+      "strictNullChecks": true
     }
-  }
+}
